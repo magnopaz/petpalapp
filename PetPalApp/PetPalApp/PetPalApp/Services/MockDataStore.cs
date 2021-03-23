@@ -6,55 +6,52 @@ using System.Threading.Tasks;
 
 namespace PetPalApp.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class MockDataStore : IDataStore<Pet>
     {
-        readonly List<Item> items;
+        readonly List<Pet> pets;
 
         public MockDataStore()
         {
-            items = new List<Item>()
+            pets = new List<Pet>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new Pet { Id = Guid.NewGuid().ToString(), Name = "Nastya", BirthDate = DateTime.Now, Info = "" },
+               new Pet { Id = Guid.NewGuid().ToString(), Name = "Mini Piu", BirthDate = DateTime.Now, Info = "" },
+               new Pet { Id = Guid.NewGuid().ToString(), Name = "Ninix", BirthDate = DateTime.Now, Info = "" },
             };
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddPetAsync(Pet pet)
         {
-            items.Add(item);
+            pets.Add(pet);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<bool> UpdatePetAsync(Pet pet)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
+            var oldItem = pets.Where((Pet arg) => arg.Id == pet.Id).FirstOrDefault();
+            pets.Remove(oldItem);
+            pets.Add(pet);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeletePetAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            var oldItem = pets.Where((Pet arg) => arg.Id == id).FirstOrDefault();
+            pets.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Pet> GetPetAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(pets.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Pet>> GetPetsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(items);
+            return await Task.FromResult(pets);
         }
     }
 }
