@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PetPalApp.Services
 {
-    public class MockDataStore : IDataStore<Pet>
+    public class MockDataStore : IPetData<Pet>
     {
         readonly List<Pet> pets;
 

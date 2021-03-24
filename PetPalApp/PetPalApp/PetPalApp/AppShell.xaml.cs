@@ -1,7 +1,5 @@
-﻿using PetPalApp.ViewModels;
-using PetPalApp.Views;
+﻿using PetPalApp.Views;
 using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace PetPalApp
@@ -11,8 +9,8 @@ namespace PetPalApp
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(PetDetailPage), typeof(PetDetailPage));
+            Routing.RegisterRoute(nameof(NewPetPage), typeof(NewPetPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

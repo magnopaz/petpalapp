@@ -1,18 +1,16 @@
 ﻿using PetPalApp.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PetPalApp.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public class NewPetViewModel : BaseViewModel
     {
-        private string text;
-        private string description;
+        private string name;
+        private string info;
+        private DateTime birthDate;
 
-        public NewItemViewModel()
+        public NewPetViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
@@ -22,20 +20,26 @@ namespace PetPalApp.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !String.IsNullOrWhiteSpace(name)
+                && !String.IsNullOrWhiteSpace(info);
         }
 
-        public string Text
+        public string Name
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => name;
+            set => SetProperty(ref name, value);
         }
 
-        public string Description
+        public DateTime BirthDate
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => birthDate;
+            set => SetProperty(ref birthDate, value);
+        }
+
+        public string Info
+        {
+            get => info;
+            set => SetProperty(ref info, value);
         }
 
         public Command SaveCommand { get; }
@@ -49,14 +53,15 @@ namespace PetPalApp.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
+            Pet newPet = new Pet()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
+                Name = Name,
+                Info = Info,
+                BirthDate = BirthDate
             };
 
-            await DataStore.AddItemAsync(newItem);
+            await DataStore.AddPetAsync(newPet);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

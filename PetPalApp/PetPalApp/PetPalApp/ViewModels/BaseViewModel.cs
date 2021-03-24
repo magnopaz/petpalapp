@@ -10,7 +10,7 @@ namespace PetPalApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IPetData<Pet> DataStore => DependencyService.Get<IPetData<Pet>>();
 
         bool isBusy = false;
         public bool IsBusy
