@@ -8,11 +8,15 @@
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="Name" FontSize="Medium" />
+            <Label Text="Nome" FontSize="Medium" />
             <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="BirthDate" FontSize="Medium" />
+            <Label Text="Espécie" FontSize="Medium" />
+            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Raça" FontSize="Medium" />
+            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+            <Label Text="Data De Nascimento" FontSize="Medium" />
             <Entry Text="{Binding DateTime, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Info" FontSize="Medium" />
+            <Label Text="História" FontSize="Medium" />
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
